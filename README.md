@@ -1,3 +1,3 @@
-# PhotosSegmentedControl
+# ModernSegmentedControl
 
-A description of this package.
+A UIKit reproduction of the iOS 13 Photos segmented control
