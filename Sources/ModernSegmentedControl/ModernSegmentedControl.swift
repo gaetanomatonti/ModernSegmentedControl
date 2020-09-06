@@ -2,7 +2,7 @@
 import UIKit
 import SwiftUI
 
-public final class PhotosSegmentedControl: UIControl {
+public final class ModernSegmentedControl: UIControl {
     
     public var items: [String] = [] {
         willSet {
@@ -135,26 +135,26 @@ public final class PhotosSegmentedControl: UIControl {
     
 }
 
-struct PhotosSegmentedControlRepresentable: UIViewRepresentable {
+struct ModernSegmentedControlRepresentable: UIViewRepresentable {
     var items: [String]
     
-    func makeUIView(context: Context) -> PhotosSegmentedControl {
-        let segmentedControl = PhotosSegmentedControl()
+    func makeUIView(context: Context) -> ModernSegmentedControl {
+        let segmentedControl = ModernSegmentedControl()
         segmentedControl.items = items
         return segmentedControl
     }
-    func updateUIView(_ uiView: PhotosSegmentedControl, context: Context) {
+    func updateUIView(_ uiView: ModernSegmentedControl, context: Context) {
         uiView.items = items
     }
 }
 
-struct PhotosSegmentedControlPreviews: PreviewProvider {
+struct ModernSegmentedControlPreviews: PreviewProvider {
     static var previews: some View {
         Group {
-            PhotosSegmentedControlRepresentable(items: ["Years", "Months", "Days", "All Photos"])
+            ModernSegmentedControlRepresentable(items: ["Years", "Months", "Days", "All Photos"])
                 .environment(\.colorScheme, .light)
                 .background(Color.white)
-            PhotosSegmentedControlRepresentable(items: ["Years", "Months", "Days", "All Photos"])
+            ModernSegmentedControlRepresentable(items: ["Years", "Months", "Days", "All Photos"])
                 .environment(\.colorScheme, .dark)
                 .background(Color.black)
         }
