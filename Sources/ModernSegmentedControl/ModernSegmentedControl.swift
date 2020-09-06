@@ -39,8 +39,8 @@ public final class ModernSegmentedControl: UIControl {
         return view
     }()
     
-    private let itemBackground: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: .systemMaterial)
+    private lazy var itemBackground: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: invertedEffectForCurrentColorScheme())
         let view = UIVisualEffectView(effect: blurEffect)
         view.alpha = 0.25
         return view
@@ -59,8 +59,7 @@ public final class ModernSegmentedControl: UIControl {
     }
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        let currentColorScheme = UITraitCollection.current.userInterfaceStyle
-        itemBackground.effect = UIBlurEffect(style: invertedEffect(for: currentColorScheme))
+        itemBackground.effect = UIBlurEffect(style: invertedEffectForCurrentColorScheme())
         setNeedsLayout()
     }
     
@@ -122,8 +121,10 @@ public final class ModernSegmentedControl: UIControl {
         selectedItem = item
     }
         
-    private func invertedEffect(for colorScheme: UIUserInterfaceStyle) -> UIBlurEffect.Style {
-        switch colorScheme {
+    private func invertedEffectForCurrentColorScheme() -> UIBlurEffect.Style {
+        let currentColorScheme = UITraitCollection.current.userInterfaceStyle
+
+        switch currentColorScheme {
             case .light:
                 return .systemMaterialDark
             case .dark:
